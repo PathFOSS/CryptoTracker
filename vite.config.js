@@ -23,4 +23,5 @@ export default defineConfig({
     }
   },
   plugins: [react()],
-})
+  base: "https://pathfoss.github.io/CryptoTracker/",
+});
