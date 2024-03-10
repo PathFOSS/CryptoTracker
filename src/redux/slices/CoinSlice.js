@@ -8,7 +8,6 @@ export const CoinSlice = createSlice({
   reducers: {
     changeCoin: (state, action) => {
       state.name = action.payload
-      console.log("coin " + action.payload);
     },
   },
 })

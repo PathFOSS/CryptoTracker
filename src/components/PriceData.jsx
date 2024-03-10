@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Cookies from "js-cookie";
 import CryptoOverview from "./CryptoOverview";
 import TableRow from "./TableRow";
+import { changeCoin } from "../redux/slices/CoinSlice";
 
 const PriceData = () => {
 
     const axiosInstance = axios.create({
-        baseURL: "https://pathfoss.github.io/CryptoTracker/",
         headers: {
-            "X-CMC_PRO_API_KEY": "2c57ecb9-967a-4415-ad57-41e159a2c671",
             "Accept": "application/json",
         }
     });
-
-    const currenciesQueried = 100;
 
     const [data, setData] = useState(null);
     const [backupData, setBackupData] = useState(null);
@@ -27,11 +24,13 @@ const PriceData = () => {
     const [style, setStyle] = useState(true);
 
     const coinSearched = useSelector((state) => state.coin.name)
-    
+    const dispatch = useDispatch();
+
     const styleDict = {
         false: "hidden",
         true: "visible"
     }
+
 
     useEffect(() => {
         if (coinSearched) {
@@ -43,7 +42,11 @@ const PriceData = () => {
         } else {
             if (backupData) {
                 setData(backupData);
+                window.history.replaceState(null, "Minimalist & Private Crypto Data", "/CryptoTracker/");
+                document.title = "CryptoTracker | Minimalist & Private Crypto Data";
+                dispatch(changeCoin(""));
             }
+            dispatch(changeCoin(new URLSearchParams(window.location.search).get("symbol")))
             setStyle(true);
         }
     }, [coinSearched])
@@ -69,38 +72,27 @@ const PriceData = () => {
         const fetchData = async() => {
             if (!coinSearched) {
 
-                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`)
-                .then(res => {
-                    setData(res.data.data);
-                }).catch(err => {
-                    console.log(err);
-                })
+                await axiosInstance.get("http://localhost:8000")
+                    .then(res => setData(res.data.data))
+                    .catch(err => console.log(err));
 
             } else {
                 
                 setData(null);
 
-                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coinSearched}`)
+                await axiosInstance.get(`http://localhost:8000/currency?symbol=${coinSearched}`)
                 .then(res => {
-                    setSearchData(res.data.data[coinSearched]);
-                }).catch(err => {
-                    console.log(err);
-                })
-
-                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?symbol=${coinSearched}`)
-                .then(res => {
-                    setMetaData(res.data.data[coinSearched][0]);
-                }).catch(err => {
-                    console.log(err);
-                })
-
+                    setSearchData(res.data[0].data[coinSearched]);
+                    setMetaData(res.data[1].data[coinSearched][0]);
+                }).catch(err => console.log(err));
+                window.history.replaceState(null, "", `/CryptoTracker/currency?symbol=${coinSearched}`);
+                document.title = `CryptoTracker | ${coinSearched} Overview`;
             }
         }
         fetchData();
     }, [refreshToggle])
     
     return <div>
-        <h1></h1>
         <table className={styleDict[style]}>
             <Navbar/>
             <tbody>
