@@ -8,6 +8,14 @@ import TableRow from "./TableRow";
 
 const PriceData = () => {
 
+    const axiosInstance = axios.create({
+        baseURL: "https://pathfoss.github.io/CryptoTracker/",
+        headers: {
+            "X-CMC_PRO_API_KEY": "2c57ecb9-967a-4415-ad57-41e159a2c671",
+            "Accept": "application/json",
+        }
+    });
+
     const currenciesQueried = 100;
 
     const [data, setData] = useState(null);
@@ -61,12 +69,8 @@ const PriceData = () => {
         const fetchData = async() => {
             if (!coinSearched) {
 
-                await axios.get(`https://pathfoss.github.io/CryptoTracker/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`,
-                {headers: {
-                    'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
-                    "Accept": "application/json",
-                }}
-                ).then(res => {
+                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`)
+                .then(res => {
                     setData(res.data.data);
                 }).catch(err => {
                     console.log(err);
@@ -76,23 +80,15 @@ const PriceData = () => {
                 
                 setData(null);
 
-                await axios.get(`https://pathfoss.github.io/CryptoTracker/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coinSearched}`,
-                {headers: {
-                    'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
-                    "Accept": "application/json",
-                }}
-                ).then(res => {
+                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coinSearched}`)
+                .then(res => {
                     setSearchData(res.data.data[coinSearched]);
                 }).catch(err => {
                     console.log(err);
                 })
 
-                await axios.get(`https://pathfoss.github.io/CryptoTracker/https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?symbol=${coinSearched}`,
-                {headers: {
-                    'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
-                    "Accept": "application/json",
-                }}
-                ).then(res => {
+                await axiosInstance.get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?symbol=${coinSearched}`)
+                .then(res => {
                     setMetaData(res.data.data[coinSearched][0]);
                 }).catch(err => {
                     console.log(err);
