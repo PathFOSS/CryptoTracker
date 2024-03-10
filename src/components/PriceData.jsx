@@ -61,7 +61,7 @@ const PriceData = () => {
         const fetchData = async() => {
             if (!coinSearched) {
 
-                await axios.get(`/main-list/latest?limit=${currenciesQueried}`,
+                await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`,
                 {headers: {
                     'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
                     "Accept": "application/json",
@@ -76,7 +76,7 @@ const PriceData = () => {
                 
                 setData(null);
 
-                await axios.get(`/searched-coin/latest?symbol=${coinSearched}`,
+                await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coinSearched}`,
                 {headers: {
                     'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
                     "Accept": "application/json",
@@ -87,7 +87,7 @@ const PriceData = () => {
                     console.log(err);
                 })
 
-                await axios.get(`/meta-data/info?symbol=${coinSearched}`,
+                await axios.get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?symbol=${coinSearched}`,
                 {headers: {
                     'X-CMC_PRO_API_KEY': '2c57ecb9-967a-4415-ad57-41e159a2c671',
                     "Accept": "application/json",
