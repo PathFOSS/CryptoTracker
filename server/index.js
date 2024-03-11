@@ -69,4 +69,3 @@ app.get("https://crypto-tracker-three-blush.vercel.app/currency*", (req, res) =>
 });
 
 app.listen(PORT, () => console.log("Listening on port " + PORT));
-console.log("Hello");
