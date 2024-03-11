@@ -9,6 +9,7 @@ import { changeCoin } from "../redux/slices/CoinSlice";
 
 const PriceData = () => {
 
+    const webUrl = "http://localhost:8080";
     const axiosInstance = axios.create({
         headers: {
             "Accept": "application/json",
@@ -30,7 +31,6 @@ const PriceData = () => {
         false: "hidden",
         true: "visible"
     }
-
 
     useEffect(() => {
         if (coinSearched) {
@@ -72,7 +72,7 @@ const PriceData = () => {
         const fetchData = async() => {
             if (!coinSearched) {
 
-                await axiosInstance.get("http://localhost:8000")
+                await axiosInstance.get(`${webUrl}`)
                     .then(res => setData(res.data.data))
                     .catch(err => console.log(err));
 
@@ -80,7 +80,7 @@ const PriceData = () => {
                 
                 setData(null);
 
-                await axiosInstance.get(`http://localhost:8000/currency?symbol=${coinSearched}`)
+                await axiosInstance.get(`${webUrl}/currency?symbol=${coinSearched}`)
                 .then(res => {
                     setSearchData(res.data[0].data[coinSearched]);
                     setMetaData(res.data[1].data[coinSearched][0]);
