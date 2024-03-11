@@ -9,7 +9,7 @@ import { changeCoin } from "../redux/slices/CoinSlice";
 
 const PriceData = () => {
 
-    const webUrl = "http://localhost:8080";
+    const webUrl = "https://crypto-tracker-server-nine.vercel.app:8080";
     const axiosInstance = axios.create({
         headers: {
             "Accept": "application/json",
