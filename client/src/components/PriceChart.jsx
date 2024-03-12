@@ -78,5 +78,5 @@ const PriceChart = (props) => {
     return <div id="chart-container">
         <Line data={data} options={options}/>
     </div>
-}
+} 
 export default PriceChart;
