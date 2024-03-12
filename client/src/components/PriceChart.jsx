@@ -33,6 +33,13 @@ const PriceChart = (props) => {
         return "";
     }
 
+    const getPadding = () => {
+        if (window.innerWidth <= 480) {
+            return 20;
+        }
+        return 0;
+    }
+
     const options = {
         scales: {
             x : {
@@ -53,6 +60,7 @@ const PriceChart = (props) => {
                 },
                 ticks: {
                     display: true,
+                    padding: getPadding(),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
                         return getPrefix() +  ModifyNumber(value, 2, true);
@@ -63,6 +71,12 @@ const PriceChart = (props) => {
                 }
             }
         },
+        layout: {
+            padding: {
+                left: getPadding(),
+                right: getPadding()
+            }
+        }
     }
     
     return <div id="chart-container">
