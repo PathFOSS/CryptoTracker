@@ -2,6 +2,7 @@ import ModifyNumber from "../functions/ModifyNumber";
 import { BrandColor, SecondaryWhite } from "../data/Colors";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
+import SimplifyNumber from "../functions/SimplifyNumber";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
@@ -35,7 +36,7 @@ const PriceChart = (props) => {
 
     const getPadding = () => {
         if (window.innerWidth <= 480) {
-            return 20;
+            return 30;
         }
         return 0;
     }
@@ -63,7 +64,7 @@ const PriceChart = (props) => {
                     padding: getPadding(),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
-                        return getPrefix() +  ModifyNumber(value, 2, true);
+                        return getPrefix() +  SimplifyNumber(value, 0, false, 0);
                     },
                 },
                 border: {
