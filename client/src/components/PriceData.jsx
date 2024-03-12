@@ -9,7 +9,7 @@ import { changeCoin } from "../redux/slices/CoinSlice";
 
 const PriceData = () => {
 
-    const webUrl = "https://crypto-tracker-server-nine.vercel.app:8080";
+    const webUrl = "http://localhost:8080";
     const axiosInstance = axios.create({
         headers: {
             "Accept": "application/json",
@@ -42,7 +42,7 @@ const PriceData = () => {
         } else {
             if (backupData) {
                 setData(backupData);
-                window.history.replaceState(null, "Minimalist & Private Crypto Data", "/CryptoTracker/");
+                window.history.replaceState(null, "Minimalist & Private Crypto Data", "/");
                 document.title = "CryptoTracker | Minimalist & Private Crypto Data";
                 dispatch(changeCoin(""));
             }
@@ -71,7 +71,7 @@ const PriceData = () => {
     useEffect(() => {
         const fetchData = async() => {
             if (!coinSearched) {
-
+                
                 await axiosInstance.get(`${webUrl}`)
                     .then(res => setData(res.data.data))
                     .catch(err => console.log(err));
@@ -85,7 +85,7 @@ const PriceData = () => {
                     setSearchData(res.data[0].data[coinSearched]);
                     setMetaData(res.data[1].data[coinSearched][0]);
                 }).catch(err => console.log(err));
-                window.history.replaceState(null, "", `/CryptoTracker/currency?symbol=${coinSearched}`);
+                window.history.replaceState(null, "", `/currency?symbol=${coinSearched}`);
                 document.title = `CryptoTracker | ${coinSearched} Overview`;
             }
         }

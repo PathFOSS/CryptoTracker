@@ -9,12 +9,13 @@ const app = express();
 app.use(cors());
 
 const currenciesQueried = 100;
+const url = "/";
 
-app.get("https://crypto-tracker-three-blush.vercel.app", (req, res) => {
+app.get("/", (req, res) => {
 
     const options = {
         method: "GET",
-        url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=100`,
+        url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`,
         headers: {
             "X-CMC_PRO_API_KEY": process.env.CMC_PRO_API_KEY,
             "Accept": "application/json",
@@ -26,7 +27,7 @@ app.get("https://crypto-tracker-three-blush.vercel.app", (req, res) => {
         .catch((error) => console.log(error));
 });
 
-app.get("https://crypto-tracker-three-blush.vercel.app/currency*", (req, res) => {
+app.get("/currency*", (req, res) => {
 
     let dataArray = [];
 
