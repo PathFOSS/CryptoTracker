@@ -64,6 +64,7 @@ const PriceChart = (props) => {
                 }
             }
         },
+        
         layout: {
             padding: {
                 left: getPadding(),
