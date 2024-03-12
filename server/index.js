@@ -11,7 +11,7 @@ app.use(cors());
 const currenciesQueried = 100;
 const url = "/";
 
-app.get("/", (req, res) => {
+app.get(`${url}`, (req, res) => {
 
     const options = {
         method: "GET",
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
         .catch((error) => console.log(error));
 });
 
-app.get("/currency*", (req, res) => {
+app.get(`${url}currency*`, (req, res) => {
 
     let dataArray = [];
 
