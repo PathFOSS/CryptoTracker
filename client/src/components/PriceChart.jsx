@@ -25,6 +25,13 @@ const PriceChart = (props) => {
             fill: true,
         }]
     }
+    
+    const getPadding = () => {
+        if (window.innerWidth <= 480) {
+            return 20;
+        }
+        return 0;
+    }
 
     const options = {
         plugins: {
@@ -61,7 +68,10 @@ const PriceChart = (props) => {
             }
         },
         layout: {
-            padding: 10
+            padding: {
+                left: getPadding(),
+                right: getPadding()
+            }
         }
     }
     
