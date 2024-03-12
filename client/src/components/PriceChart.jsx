@@ -28,7 +28,7 @@ const PriceChart = (props) => {
     
     const getPadding = () => {
         if (window.innerWidth <= 480) {
-            return 20;
+            return 40;
         }
         return 0;
     }
@@ -56,7 +56,7 @@ const PriceChart = (props) => {
                     padding: getPadding(),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
-                        return '$' + ModifyNumber(value);
+                        return "$" + ModifyNumber(value);
                     },
                 },
                 border: {
