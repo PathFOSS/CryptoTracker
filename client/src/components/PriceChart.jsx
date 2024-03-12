@@ -56,7 +56,7 @@ const PriceChart = (props) => {
                     padding: getPadding(),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
-                        return "$" + ModifyNumber(value);
+                        return ModifyNumber(value);
                     },
                 },
                 border: {
@@ -64,7 +64,6 @@ const PriceChart = (props) => {
                 }
             }
         },
-        
         layout: {
             padding: {
                 left: getPadding(),
