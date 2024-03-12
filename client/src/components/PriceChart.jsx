@@ -26,14 +26,11 @@ const PriceChart = (props) => {
         }]
     }
     
-    const getPadding = (isTicks=false) => {
+    const getPrefix = () => {
         if (window.innerWidth <= 480) {
-            if (isTicks) {
-                return 20;
-            }
-            return 100;
+            return "        ";
         }
-        return 0;
+        return "";
     }
 
     const options = {
@@ -56,10 +53,9 @@ const PriceChart = (props) => {
                 },
                 ticks: {
                     display: true,
-                    padding: getPadding(true),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
-                        return ModifyNumber(value, 2, true);
+                        return getPrefix() +  ModifyNumber(value, 2, true);
                     },
                 },
                 border: {
@@ -67,12 +63,6 @@ const PriceChart = (props) => {
                 }
             }
         },
-        layout: {
-            padding: {
-                left: getPadding(),
-                right: getPadding()
-            }
-        }
     }
     
     return <div id="chart-container">
