@@ -34,9 +34,6 @@ const PriceChart = (props) => {
     }
 
     const options = {
-        plugins: {
-            legend: true,
-        },
         scales: {
             x : {
                 grid: {
