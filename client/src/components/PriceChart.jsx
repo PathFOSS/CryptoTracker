@@ -56,6 +56,7 @@ const PriceChart = (props) => {
                 },
                 ticks: {
                     display: true,
+                    padding: getPadding(),
                     color: `${SecondaryWhite}`,
                     callback: function(value, index, ticks) {
                         return '$' + ModifyNumber(value);
