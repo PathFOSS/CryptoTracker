@@ -28,7 +28,7 @@ const PriceChart = (props) => {
     
     const getPadding = () => {
         if (window.innerWidth <= 480) {
-            return 20;
+            return 50;
         }
         return 0;
     }
