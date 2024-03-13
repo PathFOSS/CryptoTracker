@@ -9,7 +9,7 @@ import { changeCoin } from "../redux/slices/CoinSlice";
 
 const PriceData = () => {
 
-    const webUrl = "https://api.pathfoss.com";
+    const webUrl = "https://api.pathfoss.com/currencies";
     const axiosInstance = axios.create({
         headers: {
             "Accept": "application/json",

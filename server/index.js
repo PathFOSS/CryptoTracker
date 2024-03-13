@@ -1,18 +1,17 @@
 const PORT = 8080;
+const currenciesQueried = 100;
+const url = "/currencies";
+
 const express = require("express");
 const cors = require("cors");
+const redis = require("redis");
 const axios = require('axios');
-require("dotenv").config({path: "../.env"});
-
 const app = express();
 
 app.use(cors());
+require("dotenv").config({path: "../.env"});
 
-const currenciesQueried = 100;
-const url = "/";
-
-app.get(`${url}`, (req, res) => {
-
+function getCurrencyList(req, res) {
     const options = {
         method: "GET",
         url: `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=${currenciesQueried}`,
@@ -25,9 +24,11 @@ app.get(`${url}`, (req, res) => {
     axios.request(options)
         .then((response) => res.json(response.data))
         .catch((error) => console.log(error));
-});
+};
 
-app.get(`${url}currency*`, (req, res) => {
+app.get(`${url}`, getCurrencyList);
+
+app.get(`${url}/currency*`, (req, res) => {
 
     let dataArray = [];
 
