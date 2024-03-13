@@ -4,7 +4,6 @@ const url = "/currencies";
 
 const express = require("express");
 const cors = require("cors");
-const redis = require("redis");
 const axios = require('axios');
 const app = express();
 
