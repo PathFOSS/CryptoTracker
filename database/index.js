@@ -1,8 +1,10 @@
 const PORT = 8081;
 const express = require("express");
 const mysql = require("mysql");
-
+const cors = require("cors");
 const app = express();
+
+app.use(cors());
 require("dotenv").config({path: "../.env"});
 
 const db = mysql.createConnection({

@@ -10,6 +10,8 @@ import { changeCoin } from "../redux/slices/CoinSlice";
 const PriceData = () => {
 
     const webUrl = "https://api.pathfoss.com/currencies";
+    const dbUrl = "https://database.pathfoss.com/monthly-calls";
+
     const axiosInstance = axios.create({
         headers: {
             "Accept": "application/json",
@@ -88,6 +90,10 @@ const PriceData = () => {
                 window.history.replaceState(null, "", `/currency?symbol=${coinSearched}`);
                 document.title = `CryptoTracker | ${coinSearched} Overview`;
             }
+            
+            await axiosInstance.get(`${dbUrl}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err)); 
         }
         fetchData();
     }, [refreshToggle])

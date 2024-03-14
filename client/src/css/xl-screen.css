@@ -87,6 +87,11 @@ h4 {
     margin: 0rem;
 }
 
+h5 {
+    margin: var(--spacing) 0rem 0rem 0rem;
+    text-align: center;
+}
+
 span {
     color: var(--pc-brand);
 }
