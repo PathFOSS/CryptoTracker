@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import CryptoOverview from "./CryptoOverview";
 import TableRow from "./TableRow";
 import { changeCoin } from "../redux/slices/CoinSlice";
+import { changeCalls } from "../redux/slices/CallsSlice";
 
 const PriceData = () => {
 
@@ -92,9 +93,10 @@ const PriceData = () => {
             }
             
             await axiosInstance.get(`${dbUrl}`)
-            .then(res => console.log(res.data))
+            .then(res => dispatch(changeCalls(res.data[0]["TOTAL_COUNT"])))
             .catch(err => console.log(err)); 
         }
+        
         fetchData();
     }, [refreshToggle])
     
