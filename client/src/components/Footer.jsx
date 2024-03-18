@@ -17,7 +17,7 @@ const Footer = () => {
             <div id="footer-menu">
                 <h4>Browse</h4>
                 <a href="https://github.com/PathFOSS/CryptoTracker">GitHub</a>
-                <a href="mailto:patrick@pathfoss.com">Send Email</a>
+                <a href="mailto:info@pathfoss.com">Send Email</a>
             </div>
         </div>
     </footer>
