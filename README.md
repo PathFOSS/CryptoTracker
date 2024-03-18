@@ -10,7 +10,11 @@ This website does not load articles, ads, elaborate graphs, and other heavy comp
 ## How was the website made?
 With ReactJS, Vite, and npm. Six CSS files were created for responsive behavior.
 
-A free plan for the CoinMarketCap API was used.
+The front-end and back-end are hosted on Vercel. The front-end website queries the REST API at https://api.pathfoss.com in the /currencies and /currencies/currency?symbol=XXX paths relative to root.
+
+To track API usage volumes, the webpage connects to a Vercel MySQL server at https://database.pathfoss.com/monthly-calls.
+
+A free plan for the CoinMarketCap API is used.
 
 ## Why is the graph so basic?
 The free API plan does not come with historical data, which is why there are only four data points for each graphs. Each datapoint is computed from percentage changes in the 90-day, 60-day, and 30-day intervals.
