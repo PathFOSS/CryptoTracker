@@ -112,7 +112,6 @@ a > img {
 }
 
 form {
-    margin-top: var(--spacing);
     display: flex;
     align-items: center;
     justify-content: space-between;

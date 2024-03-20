@@ -7,7 +7,6 @@ const Banner = () => {
 
     return <div id="banner">
         <h1 className="home-button" onClick={() => dispatch(changeCoin(null))}><span>PathFOSS</span> CryptoTracker</h1>
-        <p className="italic-text">A private and minimalist CoinMarketCap front-end</p>
     </div>
 }
 export default Banner;
