@@ -25,7 +25,7 @@ Please submit an issue in this repository with the console log.
 Most likely we have hit the 10,000 queries / month limit on the free API plan.
 
 ## Known Bugs
-Responsible UI: Vercel hosting jams responsive CSS loading on browser resize, although the web app functions well on localhost. 
+Responsive UI: Vercel hosting jams responsive CSS loading on browser resize, although the web app functions well on localhost. 
 
 This is the error message on Firefox: "Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content."
 
