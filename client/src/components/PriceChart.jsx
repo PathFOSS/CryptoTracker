@@ -9,8 +9,8 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 const PriceChart = (props) => {
     
     const priceData = [
-        props.priceData.price / ((100 + props.priceData.percent_change_30d) / 100),
-        props.priceData.price / ((100 + props.priceData.percent_change_30d) / 100),
+        props.priceData.price / ((100 + props.priceData.percent_change_90d) / 100),
+        props.priceData.price / ((100 + props.priceData.percent_change_60d) / 100),
         props.priceData.price / ((100 + props.priceData.percent_change_30d) / 100),
         props.priceData.price,
     ];

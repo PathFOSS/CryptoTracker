@@ -26,6 +26,7 @@ const PriceData = () => {
     const [refreshToggle, setRefreshToggle] = useState(false);
     const [time, setTime] = useState(0);
     const [style, setStyle] = useState(true);
+    const [loadingCoin, setLoadingCoin] = useState(false);
 
     const coinSearched = useSelector((state) => state.coin.name)
     const dispatch = useDispatch();
@@ -82,11 +83,13 @@ const PriceData = () => {
             } else {
                 
                 setData(null);
+                setLoadingCoin(true);
 
                 await axiosInstance.get(`${webUrl}/currency?symbol=${coinSearched}`)
                 .then(res => {
                     setSearchData(res.data[0].data[coinSearched]);
                     setMetaData(res.data[1].data[coinSearched][0]);
+                    setLoadingCoin(false);
                 }).catch(err => console.log(err));
                 window.history.replaceState(null, "", `/currency?symbol=${coinSearched}`);
                 document.title = `CryptoTracker | ${coinSearched} Overview`;
@@ -100,17 +103,22 @@ const PriceData = () => {
         fetchData();
     }, [refreshToggle])
     
+
+
     return <div>
         <table className={styleDict[style]}>
             <Navbar/>
             <tbody>
                 {data ? data.map((crypto, index) => {
                     return <TableRow key={index + 1} rank={index + 1} name={crypto.name} ticker={crypto.symbol} priceData={crypto.quote.USD} circulatingSupply={crypto.circulating_supply}/>
-                }) : null}
+                }) : (Array.from({ length: 100 }, (_, index) => (
+                        <TableRow key={index + 1} rank={index + 1} name="Loading ..." ticker="" priceData="" circulatingSupply=""/>
+                    ))
+                )}
             </tbody>
         </table>
-        {searchData ? metaData 
-            ? <CryptoOverview
+        
+        {!loadingCoin ? (metaData ? <CryptoOverview
                 key={searchData.cmc_rank}
                 visibility={styleDict[!style]}
                 rank={searchData.cmc_rank}
@@ -124,8 +132,21 @@ const PriceData = () => {
                 urls={metaData.urls}
                 contractAddress={metaData.contract_address}
                 />
-            : null
-            : null
+            : null)
+            : <CryptoOverview
+                key={1}
+                visibility={styleDict[!style]}
+                rank={1}
+                name=""
+                ticker=""
+                priceData=""
+                circulatingSupply=""
+                totalSupply=""
+                logo=""
+                launchDate=""
+                urls=""
+                contractAddress=""
+                />
         }
     </div>
 }
