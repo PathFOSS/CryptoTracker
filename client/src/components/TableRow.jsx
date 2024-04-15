@@ -13,7 +13,7 @@ const TableRow = (props) => {
         <td>${SimplifyNumber(props.priceData.price, 2)}</td>
         <td className="colorized-cell hide-data"><PriceChange price={props.priceData.percent_change_1h}/></td>
         <td className="colorized-cell"><PriceChange price={props.priceData.percent_change_24h}/></td>
-        <td className="colorized-cell  hide-data"><PriceChange price={props.priceData.percent_change_7d}/></td>
+        <td className="colorized-cell hide-data"><PriceChange price={props.priceData.percent_change_7d}/></td>
         <td className="hide-data">${SimplifyNumber(props.priceData.market_cap, 0)}</td>
         <td className="hide-data">${SimplifyNumber(props.priceData.volume_24h, 0)}</td>
         <td className="hide-data">{SimplifyNumber(props.circulatingSupply, 0)} {props.ticker}</td>

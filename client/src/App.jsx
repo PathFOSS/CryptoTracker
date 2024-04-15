@@ -8,7 +8,6 @@ import MonthlyCalls from "./components/MonthlyCalls";
 const App = () => {
     return <div>
         <MonthlyCalls/>
-        <RefreshOptions/>
         <Banner/>
         <SearchBar/>
         <PriceData/>

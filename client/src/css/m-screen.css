@@ -9,25 +9,26 @@
     --pc-brand: #A4C639;
     --p-horizontal: 1rem;
     --p-default: 1rem;
-    --p-small: 0.4rem;
+    --p-small: 0.5rem;
     --spacing: 3rem;
     --r-default: 0.5rem;
     --bw-default: 0.01rem;
     --bw-large: 0.1rem;
-    --tdw-small: 1rem;
+    --tdw-small: 2rem;
     --tdw-large: 1rem;
     --icon-small: 0.4rem;
     --icon-medium: 0.6rem;
     --icon-large: 1.5rem;
+    --icon-huge: 2rem;
     --icon-gap: 0.1rem;
     --text-size: 0.75rem;
     --trans-time: 0.2s;
     --btn-width: 8rem;
     --ip-width: 20rem;
-    --xl-font: 2rem;
-    --l-font: 2rem;
-    --gap-default: 4rem;
-    --gap-small: 0.5rem;
+    --xl-font: 1.5rem;
+    --l-font: 1rem;
+    --gap-default: 0.75rem;
+    --gap-small: 0.2rem;
 }
 
 /* Root container */
@@ -71,7 +72,7 @@ p {
 h1 {
     text-align: center;
     font-size: var(--xl-font);
-    margin: var(--spacing) 0rem var(--spacing) 0rem;
+    margin: 0rem;
 }
 
 h2 {
@@ -115,7 +116,6 @@ form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: var(--p-small);
     border-radius: var(--r-default);
 }
 
@@ -156,6 +156,7 @@ input:focus, input.form-control:focus {
     gap: var(--p-default) !important;
     border: var(--bw-default) solid var(--sc-white);
     right: 0;
+    top: 0;
 }
 
 .drop-down > div {
@@ -173,16 +174,23 @@ input:focus, input.form-control:focus {
     cursor: pointer;
 }
 
-/* Buttons container */
-#refresh-container {
-    text-align: center;
-    margin-top: var(--spacing);
+.progress-bar {
+    margin: 0rem calc(-1 * var(--p-horizontal)) 0rem calc(-1 * var(--p-horizontal));
 }
 
+/* Buttons container */
 #refresh-buttons {
+    position: relative;
+    z-index: 2;
+    height: var(--icon-huge);
+}
+
+#refresh-buttons .drop-down {
+    display: none;
+}
+
+#refresh-buttons:hover .drop-down {
     display: flex;
-    justify-content: center;
-    margin-top: var(--spacing);
 }
 
 #refresh-buttons button {
@@ -192,6 +200,10 @@ input:focus, input.form-control:focus {
     color: var(--pc-white);
 }
 
+#refresh-buttons img {
+    height: var(--icon-huge) !important;
+}
+
 .selected {
     transition: var(--trans-time);
     color: var(--pc-brand) !important;
@@ -199,10 +211,19 @@ input:focus, input.form-control:focus {
 }
 
 /* Banner */
+#banner-container {
+    display: flex;
+    justify-content: center;
+}
+
 #banner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    margin-top: var(--spacing);
+    gap: var(--gap-small);
+    width: calc(var(--ip-width) + var(--icon-large) + 4 * var(--p-small) + 2 * var(--bw-large));
 }
 
 .home-button:hover {
@@ -213,6 +234,7 @@ input:focus, input.form-control:focus {
 #search-bar {
     display: flex;
     justify-content: center;
+    margin-top: var(--spacing);
 }
 
 .btn-submit {
@@ -377,7 +399,8 @@ tr:not(#navbar):hover {
 }
 
 #chart-container {
-    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Footer */

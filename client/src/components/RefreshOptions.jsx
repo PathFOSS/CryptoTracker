@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import CloudRefresh from "../images/cloud-refresh.svg";
 
 const RefreshOptions = () => {
 
@@ -18,10 +19,13 @@ const RefreshOptions = () => {
     }, [preference]);
 
     return <div id="refresh-buttons">
-        <button className={style[0]} onClick={() => setPreference(0)}>Never Refresh</button>
-        <button className={style[1]} onClick={() => setPreference(1)}>Every 60 sec</button>
-        <button className={style[2]} onClick={() => setPreference(2)}>Every 15 min</button>
-        <button className={style[3]} onClick={() => setPreference(3)}>Every 30 min</button>
+        <img className="image-link" src={CloudRefresh}/>
+        <div className="drop-down">
+            <button className={style[0]} onClick={() => setPreference(0)}>Never Refresh</button>
+            <button className={style[1]} onClick={() => setPreference(1)}>Every 60 sec</button>
+            <button className={style[2]} onClick={() => setPreference(2)}>Every 15 min</button>
+            <button className={style[3]} onClick={() => setPreference(3)}>Every 30 min</button>
+        </div>        
     </div>
 }
 export default RefreshOptions;

@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
+import ProgressBar from "./ProgressBar";
 
 const MonthlyCalls = () => {
     const callsTotal = useSelector((state) => state.calls.value);
-    return <h5>Total API calls this month: {callsTotal} / 10000</h5>
+    return <div>
+        <ProgressBar calls={callsTotal}/>
+    </div>
 }
 export default MonthlyCalls;

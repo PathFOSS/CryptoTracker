@@ -73,21 +73,20 @@ const CryptoOverview = (props) => {
                 <p>${ModifyNumber(props.priceData.fully_diluted_market_cap, 0)}</p>
             </div>
             <div id="social-overview">
-                {props.urls.website[0] ? <a href={props.urls.website[0]} target="_blank"><img src={IconWebsite}/></a> : null}
-                {props.urls.technical_doc[0] ? <a href={props.urls.technical_doc[0]} target="_blank"><img src={IconWhitepaper}/></a> : null}
-                {props.urls.source_code[0] ? <a href={props.urls.source_code[0]} target="_blank"><img src={IconGitHub}/></a> : null}
-                {props.urls.twitter[0] ? <a href={props.urls.twitter[0]} target="_blank"><img src={IconTwitter}/></a> : null}
-                {props.urls.reddit[0] ? <a href={props.urls.reddit[0]} target="_blank"><img src={IconReddit}/></a> : null}
-                {props.urls.facebook[0] ? <a href={props.urls.facebook[0]} target="_blank"><img src={IconFaceBook}/></a> : null}
-                {props.urls.message_board[0] ? <a href={props.urls.message_board[0]} target="_blank"><img src={IconMedium}/></a> : null}
+                {props.urls.website[0] ? <a href={props.urls.website[0]} rel="nofollow" target="_blank"><img src={IconWebsite}/></a> : null}
+                {props.urls.technical_doc[0] ? <a href={props.urls.technical_doc[0]} rel="nofollow" target="_blank"><img src={IconWhitepaper}/></a> : null}
+                {props.urls.source_code[0] ? <a href={props.urls.source_code[0]} rel="nofollow" target="_blank"><img src={IconGitHub}/></a> : null}
+                {props.urls.twitter[0] ? <a href={props.urls.twitter[0]} rel="nofollow" target="_blank"><img src={IconTwitter}/></a> : null}
+                {props.urls.reddit[0] ? <a href={props.urls.reddit[0]} rel="nofollow" target="_blank"><img src={IconReddit}/></a> : null}
+                {props.urls.facebook[0] ? <a href={props.urls.facebook[0]} rel="nofollow" target="_blank"><img src={IconFaceBook}/></a> : null}
+                {props.urls.message_board[0] ? <a href={props.urls.message_board[0]} rel="nofollow" target="_blank"><img src={IconMedium}/></a> : null}
                 {props.urls.chat[0] ? props.urls.chat.map((platform, index) => {
                     if (platform.includes("//t.me/")) {
-                        return <a key={index} href={platform} target="_blank"><img src={IconTelegram}/></a>
+                        return <a key={index} href={platform} rel="nofollow" target="_blank"><img src={IconTelegram}/></a>
                     } else {
-                        return <a key={index} href={platform} target="_blank"><img src={IconDiscord}/></a>
+                        return <a key={index} href={platform} rel="nofollow" target="_blank"><img src={IconDiscord}/></a>
                     }
                 }) : null}
-
             </div>
         </div>
         <PriceChart priceData={props.priceData}/>
