@@ -89,10 +89,10 @@ const PriceData = () => {
                 .then(res => {
                     setSearchData(res.data[0].data[coinSearched]);
                     setMetaData(res.data[1].data[coinSearched][0]);
+                    window.history.replaceState(null, "", `/currency?symbol=${coinSearched}`);
+                    document.title = `${res.data[0].data[coinSearched].name} Price: ${coinSearched} Price Chart and Market Cap | CryptoTracker`;
                     setLoadingCoin(false);
                 }).catch(err => console.log(err));
-                window.history.replaceState(null, "", `/currency?symbol=${coinSearched}`);
-                document.title = `CryptoTracker | ${coinSearched} Overview`;
             }
             
             await axiosInstance.get(`${dbUrl}`)
