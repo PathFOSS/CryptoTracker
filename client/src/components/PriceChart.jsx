@@ -1,87 +1,24 @@
-import ModifyNumber from "../functions/ModifyNumber";
-import { BrandColor, SecondaryWhite } from "../data/Colors";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
-import SimplifyNumber from "../functions/SimplifyNumber";
-
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
+import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts";
+import { PrimaryWhite, SecondaryWhite, BrandColor } from "../data/Colors";
 
 const PriceChart = (props) => {
-    
+
     const priceData = [
-        props.priceData.price / ((100 + props.priceData.percent_change_90d) / 100),
-        props.priceData.price / ((100 + props.priceData.percent_change_60d) / 100),
-        props.priceData.price / ((100 + props.priceData.percent_change_30d) / 100),
-        props.priceData.price,
+        {label: "90d", price: props.priceData.price / ((100 + props.priceData.percent_change_90d) / 100)},
+        {label: "60d", price: props.priceData.price / ((100 + props.priceData.percent_change_60d) / 100)},
+        {label: "30d", price: props.priceData.price / ((100 + props.priceData.percent_change_30d) / 100)},
+        {label: "Now", price: props.priceData.price}
     ];
 
-    const data = {
-        labels: ["90d", "60d", "30d", "Now"],
-        datasets: [{
-            data: priceData,
-            borderColor: `${BrandColor}`,
-            pointStyle: false,
-            tension: 0.3,
-            borderWidth: 2,
-            fill: true,
-        }]
-    }
-    
-    const getPrefix = () => {
-        if (window.innerWidth <= 480) {
-            return "        ";
-        }
-        return "";
-    }
-
-    const getPadding = () => {
-        if (window.innerWidth <= 480) {
-            return 30;
-        }
-        return 0;
-    }
-
-    const options = {
-        scales: {
-            x : {
-                grid: {
-                    display: false
-                },
-                ticks: {
-                    color: `${SecondaryWhite}`
-                },
-                border: {
-                    display: false
-                }
-            },
-            y: {
-                grid: {
-                    color: `${SecondaryWhite}`,
-                    lineWidth: "0.2"
-                },
-                ticks: {
-                    display: true,
-                    padding: getPadding(),
-                    color: `${SecondaryWhite}`,
-                    callback: function(value, index, ticks) {
-                        return getPrefix() +  SimplifyNumber(value, 0, false, 0);
-                    },
-                },
-                border: {
-                    display: false
-                }
-            }
-        },
-        layout: {
-            padding: {
-                left: getPadding(),
-                right: getPadding()
-            }
-        }
-    }
-    
     return <div id="chart-container">
-        <Line data={data} options={options}/>
+        <ResponsiveContainer>
+            <AreaChart width={500} height={400} data={priceData}>
+                <YAxis width={40} tick={{ fill: PrimaryWhite }}/>
+                <XAxis dataKey="label" tick={{ fill: PrimaryWhite }}/>
+                <CartesianGrid stroke={SecondaryWhite} strokeDasharray="4 4"/>
+                <Area type="monotone" dataKey="price" fill={SecondaryWhite} stroke={BrandColor} strokeWidth={2}/>
+            </AreaChart>
+        </ResponsiveContainer>
     </div>
 } 
 export default PriceChart;

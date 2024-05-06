@@ -406,6 +406,7 @@ tr:not(#navbar):hover {
 #chart-container {
     display: flex;
     justify-content: flex-end;
+    height: 16rem;
 }
 
 /* Footer */
